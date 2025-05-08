@@ -4,28 +4,28 @@ A simple UTXO-based blockchain implemented in Rust. This CLI application support
 
 ## Table of Contents
 
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Quick Start (Local)](#quick-start-local)
-- [CLI Commands](#cli-commands)
-- [Docker Usage](#docker-usage)
-- [Project Structure](#project-structure)
-- [License](#license)
+-  [Features](#features)
+-  [Prerequisites](#prerequisites)
+-  [Quick Start (Local)](#quick-start-local)
+-  [CLI Commands](#cli-commands)
+-  [Docker Usage](#docker-usage)
+-  [Project Structure](#project-structure)
+-  [License](#license)
 
 ## Features
 
-- Create a new blockchain with a coinbase genesis block
-- UTXO-based transaction model
-- Persistent storage using sled
-- Proof-of-work mining
-- CLI interface via Clap
-- Optional `--mine` flag to mine immediately
-- Running as a simple node server
+-  Create a new blockchain with a coinbase genesis block
+-  UTXO-based transaction model
+-  Persistent storage using sled
+-  Proof-of-work mining
+-  CLI interface via Clap
+-  Optional `--mine` flag to mine immediately
+-  Running as a simple node server
 
 ## Prerequisites
 
-- [Rust](https://www.rust-lang.org/tools/install) (1.85+)
-- [Docker](https://docs.docker.com/get-docker/) (optional, for containerized usage)
+-  [Rust](https://www.rust-lang.org/tools/install) (1.85+)
+-  [Docker](https://docs.docker.com/get-docker/) (optional, for containerized usage)
 
 ## Quick Start (Local)
 
@@ -74,10 +74,6 @@ cargo run --version
    ```bash
    docker build -t go_rusti\:interactive .
    ```
-
-```
-
-```
 
 2. **Run container**
 
