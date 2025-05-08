@@ -72,56 +72,29 @@ cargo run --version
 1. **Build image**
 
    ```bash
-
+   docker build -t go_rusti\:interactive .
    ```
 
-docker build -t go_rusti\:interactive .
+```
 
-````
+```
 
 2. **Run container**
 
    ```bash
-docker run -it --rm \
-  -v $(pwd)/data/blocks:/app/data/blocks \
-  go_rusti:interactive
-````
+   docker run -it --rm \
+   -v $(pwd)/data/blocks:/app/data/blocks \
+   go_rusti:interactive
+   ```
 
 3. **Inside container**, invoke commands:
 
    ```bash
-
+   /app/go_rusti create <ADDRESS>
+   /app/go_rusti print_chain
+   /app/go_rusti get_balance <ADDRESS>
+   /app/go_rusti send <FROM> <TO> <AMOUNT>
+   /app/go_rusti send <FROM> <TO> <AMOUNT> --mine
+   /app/go_rusti start_node <PORT> <ADDRESS>
+   /app/go_rusti --help
    ```
-
-/app/go_rusti create <ADDRESS>
-/app/go_rusti print_chain
-/app/go_rusti get_balance <ADDRESS>
-/app/go_rusti send <FROM> <TO> <AMOUNT>
-/app/go_rusti send <FROM> <TO> <AMOUNT> --mine
-/app/go_rusti start_node <PORT> <ADDRESS>
-/app/go_rusti --help
-
-```
-
-## Project Structure
-
-```
-
-├── Cargo.toml
-├── src
-│ ├── block.rs # Block & PoW logic
-│ ├── blockchain.rs # Chain store & UTXO tracking
-│ ├── transactions.rs # Transaction types
-│ ├── cli.rs # CLI interface
-│ ├── errors.rs # Error alias
-│ └── main.rs # Entrypoint
-├── data/blocks # sled DB folder (mounted)
-└── Dockerfile # Multi-stage Docker build
-
-```
-
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-```
