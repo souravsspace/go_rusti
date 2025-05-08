@@ -1,4 +1,4 @@
-use crate::errors::Result;
+use crate::{errors::Result, transactions::Transaction};
 use crypto::{digest::Digest, sha2::Sha256};
 use log::info;
 use serde::{Deserialize, Serialize};
@@ -9,7 +9,7 @@ pub const TARGET_HEXS: usize = 4;
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Block {
     timestamp: u128,
-    transactions: String,
+    transactions: Vec<Transaction>,
     prev_block_hash: String,
     hash: String,
     height: usize,
@@ -17,8 +17,12 @@ pub struct Block {
 }
 
 impl Block {
-    pub fn new_genesis_block() -> Block {
-        Block::new_block(String::from("Genesis block!"), String::new(), 0).unwrap()
+    pub fn get_transaction(&self) -> &Vec<Transaction> {
+        &self.transactions
+    }
+
+    pub fn new_genesis_block(tc: Transaction) -> Block {
+        Block::new_block(vec![tc], String::new(), 0).unwrap()
     }
 
     pub fn get_hash(&self) -> String {
@@ -29,7 +33,11 @@ impl Block {
         self.prev_block_hash.clone()
     }
 
-    pub fn new_block(data: String, prev_block_hash: String, height: usize) -> Result<Block> {
+    pub fn new_block(
+        data: Vec<Transaction>,
+        prev_block_hash: String,
+        height: usize,
+    ) -> Result<Block> {
         let timestamp = SystemTime::now()
             .duration_since(SystemTime::UNIX_EPOCH)?
             .as_millis();
